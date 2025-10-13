@@ -2,7 +2,53 @@ import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
+import { Heart, FileText, CheckCircle, ArrowRightCircle, Info } from 'lucide-react';
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from '@/components/ui/popover';
+
+  const Dropdown = ({
+    title,
+    children,
+  }: {
+    title: string;
+    children: React.ReactNode;
+  }) => (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button variant="outline" className="border-primary text-primary hover:bg-primary/10 hover:text-primary">
+          {title} <Info className="ml-2 h-4 w-4" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-80 shadow-lg">
+        <ul className="space-y-4">{children}</ul>
+      </PopoverContent>
+    </Popover>
+  );
+  
+  const DropdownItem = ({
+    icon,
+    title,
+    description,
+    href = '#',
+  }: {
+    icon: React.ReactNode;
+    title:string;
+    description: string;
+    href?: string;
+  }) => (
+    <li className="flex items-start gap-4">
+      <div className="text-primary mt-1">{icon}</div>
+      <div>
+        <Link href={href} className="font-semibold hover:underline">
+          {title}
+        </Link>
+        <p className="text-sm text-muted-foreground">{description}</p>
+      </div>
+    </li>
+  );
 
 export function Hero() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-bg');
@@ -47,9 +93,9 @@ export function Hero() {
                 <p className="max-w-md text-base text-gray-200">
                     Your contribution helps us provide food, shelter, and medical care. Every donation, big or small, makes a profound difference in their lives.
                 </p>
-                <Button asChild size="lg" className="mt-4">
+                <Button asChild className="mt-4">
                   <Link href="#donate">
-                    <Heart className="mr-2 h-5 w-5" /> Donate Now
+                    <Heart className="mr-2 h-4 w-4" /> Donate Now
                   </Link>
                 </Button>
             </div>
