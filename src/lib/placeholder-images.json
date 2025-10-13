@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "A serene pastoral landscape with cows grazing under a warm sun.",
+      "imageUrl": "https://picsum.photos/seed/hero-bg/1920/1080",
+      "imageHint": "pastoral landscape"
+    },
+    {
+      "id": "qr-code",
+      "description": "QR code for donations",
+      "imageUrl": "https://picsum.photos/seed/qrcode/256/256",
+      "imageHint": "qr code"
+    },
+    {
+      "id": "gallery-1",
+      "description": "A close-up of a happy, healthy cow in the shelter.",
+      "imageUrl": "https://picsum.photos/seed/gallery-1/600/400",
+      "imageHint": "happy cow"
+    },
+    {
+      "id": "gallery-2",
+      "description": "A wide shot of the clean and spacious cow shelter.",
+      "imageUrl": "https://picsum.photos/seed/gallery-2/600/400",
+      "imageHint": "cow shelter"
+    },
+    {
+      "id": "gallery-3",
+      "description": "A beautiful Indian cow with expressive eyes.",
+      "imageUrl": "https://picsum.photos/seed/gallery-3/600/400",
+      "imageHint": "indian cow"
+    },
+    {
+      "id": "gallery-4",
+      "description": "A playful calf running in a green pasture.",
+      "imageUrl": "https://picsum.photos/seed/gallery-4/600/400",
+      "imageHint": "calf"
+    },
+    {
+      "id": "gallery-5",
+      "description": "A herd of cows grazing peacefully in a field.",
+      "imageUrl": "https://picsum.photos/seed/gallery-5/600/400",
+      "imageHint": "cows grazing"
+    },
+    {
+      "id": "map",
+      "description": "A map showing the location of CowKind Haven.",
+      "imageUrl": "https://picsum.photos/seed/map/600/400",
+      "imageHint": "map location"
+    },
+    {
+      "id": "donation-bg",
+      "description": "A cow looking at the camera with gentle, grateful eyes.",
+      "imageUrl": "https://picsum.photos/seed/donation-bg/800/600",
+      "imageHint": "grateful cow"
+    },
+    {
+      "id": "about-1",
+      "description": "A volunteer feeding a cow at the shelter.",
+      "imageUrl": "https://picsum.photos/seed/about-1/500/350",
+      "imageHint": "cow feeding"
+    },
+    {
+      "id": "logo-icon",
+      "description": "A simple icon for the logo.",
+      "imageUrl": "https://picsum.photos/seed/logo/64/64",
+      "imageHint": "cow face"
+    }
+  ]
 }
