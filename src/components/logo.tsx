@@ -16,7 +16,7 @@ export function Logo({ className }: { className?: string }) {
     <div className={cn("flex items-center gap-2", className)}>
       <CowIcon className="h-8 w-8 text-primary" />
       <span className="font-headline text-2xl font-bold tracking-tight">
-        CowKind Haven
+        Shri Gopal Krishna Seva Trust
       </span>
     </div>
   );

@@ -1,4 +1,4 @@
-# **App Name**: CowKind Haven
+# **App Name**: Shri Gopal Krishna Seva Trust
 
 ## Core Features:
 

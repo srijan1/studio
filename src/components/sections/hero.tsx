@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Heart } from 'lucide-react';
 
 export function Hero() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-bg');
@@ -25,7 +26,7 @@ export function Hero() {
           Their Eyes Plead For Your Kindness
         </h1>
         <p className="mt-6 max-w-3xl text-lg md:text-xl">
-          Join CowKind Haven in our mission to provide sanctuary, nourishment, and lifelong care to cows in need. Your compassion can change their world.
+          Join Shri Gopal Krishna Seva Trust in our mission to provide sanctuary, nourishment, and lifelong care to cows in need. Your compassion can change their world.
         </p>
         <div className="mt-8 flex flex-col items-center gap-8 sm:flex-row">
             <div className="flex flex-col items-center gap-4 rounded-lg bg-background/80 p-6 text-foreground shadow-lg backdrop-blur-sm">
@@ -46,8 +47,10 @@ export function Hero() {
                 <p className="max-w-md text-base text-gray-200">
                     Your contribution helps us provide food, shelter, and medical care. Every donation, big or small, makes a profound difference in their lives.
                 </p>
-                <Button size="lg" asChild className="mt-2">
-                    <Link href="#donate">Support Our Mission</Link>
+                <Button asChild size="lg" className="mt-4">
+                  <Link href="#donate">
+                    <Heart className="mr-2 h-5 w-5" /> Donate Now
+                  </Link>
                 </Button>
             </div>
         </div>

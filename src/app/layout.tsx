@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'CowKind Haven',
+  title: 'Shri Gopal Krishna Seva Trust',
   description: 'A sanctuary for our bovine friends. Join us in protecting and caring for them.',
 };
 
