@@ -26,21 +26,21 @@ export function Contact() {
                                 <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                                 <div>
                                     <h3 className="font-bold">Address</h3>
-                                    <p className="text-muted-foreground">123 Gau Seva Marg, Vrindavan, UP, India 281121</p>
+                                    <p className="text-muted-foreground">Shri gopal krishna gaushala, Khaira Village, Najafgarh, New Delhi, India 110043</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
                                 <Phone className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                                 <div>
                                     <h3 className="font-bold">Phone</h3>
-                                    <p className="text-muted-foreground">+91 987 654 3210</p>
+                                    <p className="text-muted-foreground">+91 9910857835</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
                                 <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                                 <div>
                                     <h3 className="font-bold">Email</h3>
-                                    <p className="text-muted-foreground">contact@cowkindhaven.org</p>
+                                    <p className="text-muted-foreground">contact@sgkg.in</p>
                                 </div>
                             </div>
                         </CardContent>

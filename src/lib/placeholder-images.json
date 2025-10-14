@@ -3,7 +3,7 @@
     {
       "id": "hero-bg",
       "description": "A serene pastoral landscape with cows grazing under a warm sun.",
-      "imageUrl": "https://picsum.photos/seed/hero-bg/1920/1080",
+      "imageUrl": "https://images.pexels.com/photos/7014365/pexels-photo-7014365.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "imageHint": "pastoral landscape"
     },
     {
@@ -57,7 +57,7 @@
     {
       "id": "about-1",
       "description": "A volunteer feeding a cow at the shelter.",
-      "imageUrl": "https://picsum.photos/seed/about-1/500/350",
+      "imageUrl": "https://theharekrishnamovement.org/wp-content/uploads/2015/08/care-for-cows.jpg",
       "imageHint": "cow feeding"
     },
     {

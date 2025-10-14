@@ -1,33 +1,83 @@
+"use client";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { UtensilsCrossed, ShieldCheck, Home } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 
 const donationTiers = [
   {
-    amount: '1,100',
+    amount: '1100',
     description: 'Feed a cow for a week.',
     icon: <UtensilsCrossed className="w-8 h-8 text-primary" />,
   },
   {
-    amount: '5,100',
+    amount: '5100',
     description: 'Sponsor medical care for a month.',
     icon: <ShieldCheck className="w-8 h-8 text-primary" />,
   },
   {
-    amount: '11,000',
+    amount: '11000',
     description: 'Contribute to shelter infrastructure.',
     icon: <Home className="w-8 h-8 text-primary" />,
   },
 ];
 
+function DonationDialog({ amount, onClose }: { amount: string; onClose: () => void }) {
+  const upiLink = `upi://pay?pa=YOUR_UPI_ID&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
+  const whatsappLink = `https://wa.me/+91ADMINNUMBER?text=I%20paid%20%E2%82%B9${amount}%20to%20Shri%20Gopal%20Krishna%20Seva%20Trust.%20Receipt%20attached.`;
+
+  return (
+    <Dialog open onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Complete Your Donation</DialogTitle>
+          <DialogDescription>
+            Thank you for your generous contribution. Please follow the steps below to complete your donation.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="text-center my-4">
+          <p className="font-semibold text-lg">Click the button below to pay.</p>
+          <a href={upiLink} className="inline-block mt-4">
+            <Button size="lg">Pay ₹{amount} via UPI</Button>
+          </a>
+        </div>
+        <DialogFooter className="flex flex-col items-center">
+            <p className="text-sm text-muted-foreground mb-4">After payment, please notify us on WhatsApp for your 80G recipt.</p>
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline">Notify Admin on WhatsApp</Button>
+            </a>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 export function Donation() {
   const donationBg = PlaceHolderImages.find((img) => img.id === 'donation-bg');
+  const [dialogAmount, setDialogAmount] = useState<string | null>(null);
+  const [customAmount, setCustomAmount] = useState('');
+
+  const handleDonationClick = (amount: string) => {
+    setDialogAmount(amount);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogAmount(null);
+  };
+
+  const handleCustomDonation = () => {
+    if (customAmount) {
+      handleDonationClick(customAmount);
+    }
+  };
 
   return (
     <section id="donate" className="py-16 md:py-24 relative">
+      {dialogAmount && <DonationDialog amount={dialogAmount} onClose={handleCloseDialog} />}
         {donationBg && (
             <Image
                 src={donationBg.imageUrl}
@@ -51,11 +101,11 @@ export function Donation() {
                 <div className="p-4 bg-accent rounded-full mb-4">
                     {tier.icon}
                 </div>
-                <CardTitle className="font-headline text-4xl">₹{tier.amount}</CardTitle>
+                <CardTitle className="font-headline text-4xl">₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</CardTitle>
                 <CardDescription className="text-base">{tier.description}</CardDescription>
               </CardHeader>
               <CardFooter className="mt-auto">
-                <Button className="w-full">Donate ₹{tier.amount}</Button>
+                <Button className="w-full" onClick={() => handleDonationClick(tier.amount)}>Donate ₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Button>
               </CardFooter>
             </Card>
           ))}
@@ -69,11 +119,19 @@ export function Donation() {
             <CardContent>
                 <div className="flex items-center space-x-2">
                     <span className="text-2xl font-bold">₹</span>
-                    <Input type="number" placeholder="Enter amount" className="text-lg h-12 bg-background" />
+                    <Input
+                      type="number"
+                      placeholder="Enter amount"
+                      className="text-lg h-12 bg-background"
+                      value={customAmount}
+                      onChange={(e) => setCustomAmount(e.target.value)}
+                    />
                 </div>
             </CardContent>
             <CardFooter>
-                <Button className="w-full" size="lg">Donate Custom Amount</Button>
+                <Button className="w-full" size="lg" onClick={handleCustomDonation} disabled={!customAmount}>
+                  Donate Custom Amount
+                </Button>
             </CardFooter>
         </Card>
       </div>
