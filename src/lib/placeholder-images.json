@@ -15,19 +15,19 @@
     {
       "id": "gallery-1",
       "description": "A close-up of a happy, healthy cow in the shelter.",
-      "imageUrl": "https://picsum.photos/seed/gallery-1/600/400",
+      "imageUrl": "/images/gallery_1.jpeg",
       "imageHint": "happy cow"
     },
     {
       "id": "gallery-2",
       "description": "A wide shot of the clean and spacious cow shelter.",
-      "imageUrl": "https://picsum.photos/seed/gallery-2/600/400",
+      "imageUrl": "/images/gallery_2.jpeg",
       "imageHint": "cow shelter"
     },
     {
       "id": "gallery-3",
       "description": "A beautiful Indian cow with expressive eyes.",
-      "imageUrl": "https://picsum.photos/seed/gallery-3/600/400",
+      "imageUrl": "/images/gallery_3.jpeg",
       "imageHint": "indian cow"
     },
     {
@@ -63,7 +63,7 @@
     {
       "id": "logo-icon",
       "description": "A simple icon for the logo.",
-      "imageUrl": "https://picsum.photos/seed/logo/64/64",
+      "imageUrl": "/images/gaushala_logo.jpeg",
       "imageHint": "cow face"
     }
   ]
