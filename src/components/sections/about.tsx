@@ -58,7 +58,7 @@ export function About() {
                         alt={aboutImage.description}
                         width={500}
                         height={350}
-                        className="rounded-lg shadow-xl mx-auto"
+                        className="rounded-lg shadow-xl mx-auto w-full h-auto"
                         data-ai-hint={aboutImage.imageHint}
                     />
                 )}
