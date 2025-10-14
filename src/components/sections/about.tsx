@@ -29,7 +29,7 @@ export function About() {
         <div className="text-center mb-12">
             <h2 className="font-headline text-4xl md:text-5xl">Our Sacred Duty</h2>
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-                At Shri Gopal Krishna Seva Trust, we are dedicated to the principle of 'Gau Seva' – serving the cow, who is revered as a mother in our culture. We believe every cow deserves to live a life free from suffering and filled with care.
+                At Shri Gopal Krishna Gaushala Seva Trust, we are dedicated to the principle of 'Gau Seva' – serving the cow, who is revered as a mother in our culture. We believe every cow deserves to live a life free from suffering and filled with care.
             </p>
         </div>
 
@@ -37,7 +37,7 @@ export function About() {
             <div className="order-2 md:order-1">
                 <h3 className="font-headline text-3xl mb-4">A Sanctuary of Compassion</h3>
                 <p className="text-muted-foreground mb-6 text-lg">
-                Shri Gopal Krishna Seva Trust is more than just a shelter; it's a home. We rescue cows from neglect and abandonment, providing them with nutritious food, clean water, medical attention, and a peaceful environment where they can thrive. Our commitment extends for their entire lifetime, ensuring they are always treated with the dignity and love they deserve.
+                Shri Gopal Krishna Gaushala Seva Trust is more than just a shelter; it's a home. We rescue cows from neglect and abandonment, providing them with nutritious food, clean water, medical attention, and a peaceful environment where they can thrive. Our commitment extends for their entire lifetime, ensuring they are always treated with the dignity and love they deserve.
                 </p>
                 <div className="grid grid-cols-1 gap-6 mt-8">
                 {activities.map((activity) => (

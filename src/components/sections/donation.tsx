@@ -26,13 +26,34 @@ const donationTiers = [
   },
 ];
 
+async function logDonation(amount: string) {
+  try {
+    await fetch('/api/log-donation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        amount,
+        date: new Date().toISOString(),
+      }),
+    });
+  } catch (error) {
+    console.error('Failed to log donation:', error);
+  }
+}
+
 function DonationDialog({ amount, onClose }: { amount: string; onClose: () => void }) {
-  const upiLink = `upi://pay?pa=getepay.usfbqrap255469@utkarshbank&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
+  const upiLink = `upi://pay?pa=getepay.usfbqrap255469&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
   const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-  const message = `I paid ₹${amount} to Shri Gopal Krishna Seva Trust on ${dateTime}. Receipt attached.`;
+  const message = `I paid ₹${amount} to Shri Gopal Krishna Gaushala Seva Trust on ${dateTime}. Receipt attached.`;
   const whatsappLink = `https://wa.me/+919910857835?text=${encodeURIComponent(message)}`;
   const qrCodeImage = PlaceHolderImages.find((img) => img.id === 'qr-code');
 
+  const handlePayment = () => {
+    logDonation(amount);
+    window.location.href = upiLink;
+  };
 
   return (
     <Dialog open onOpenChange={onClose}>
@@ -58,9 +79,7 @@ function DonationDialog({ amount, onClose }: { amount: string; onClose: () => vo
                 <p className="font-bold">Scan to Donate</p>
                 </div>
             )}
-            <a href={upiLink} className="inline-block mt-4">
-            <Button size="lg">Pay ₹{amount} via UPI</Button>
-          </a>
+            <Button size="lg" className="mt-4" onClick={handlePayment}>Pay ₹{amount} via UPI</Button>
           <p className="text-sm text-muted-foreground mt-2">
             If the button doesn't work, please try scanning the QR code above or use the bank details below.
           </p>
@@ -128,11 +147,11 @@ export function Donation() {
                 <div className="p-4 bg-accent rounded-full mb-4">
                     {tier.icon}
                 </div>
-                <CardTitle className="font-headline text-4xl">₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</CardTitle>
+                <CardTitle className="font-headline text-4xl">₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</CardTitle>
                 <CardDescription className="text-base">{tier.description}</CardDescription>
               </CardHeader>
               <CardFooter className="mt-auto">
-                <Button className="w-full" onClick={() => handleDonationClick(tier.amount)}>Donate ₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Button>
+                <Button className="w-full" onClick={() => handleDonationClick(tier.amount)}>Donate ₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Button>
               </CardFooter>
             </Card>
           ))}

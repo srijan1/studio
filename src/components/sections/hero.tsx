@@ -15,7 +15,7 @@ export function Hero() {
   const heroImage = PlaceHolderImages.find((img) => img.id === 'hero-bg');
   const qrCodeImage = PlaceHolderImages.find((img) => img.id === 'qr-code');
   const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
-  const message = `I donated a custom amount to Shri Gopal Krishna Seva Trust on ${dateTime}. Receipt attached.`;
+  const message = `I donated a custom amount to Shri Gopal Krishna Gaushala Seva Trust on ${dateTime}. Receipt attached.`;
   const whatsappLink = `https://wa.me/+919910857835?text=${encodeURIComponent(message)}`;
 
   return (
@@ -36,7 +36,7 @@ export function Hero() {
           Their Eyes Plead For Your Kindness
         </h1>
         <p className="mt-6 max-w-3xl text-lg md:text-xl">
-          Join Shri Gopal Krishna Seva Trust in our mission to provide sanctuary, nourishment, and lifelong care to cows in need. Your compassion can change their world.
+          Join Shri Gopal Krishna Gaushala Seva Trust in our mission to provide sanctuary, nourishment, and lifelong care to cows in need. Your compassion can change their world.
         </p>
         <div className="mt-8 flex flex-col items-center gap-8 sm:flex-row">
             <div className="flex flex-col items-center gap-4 rounded-lg bg-background/80 p-6 text-foreground shadow-lg backdrop-blur-sm">

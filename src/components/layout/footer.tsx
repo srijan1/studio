@@ -14,7 +14,7 @@ export function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
                     <Logo />
                     <p className="text-center text-muted-foreground">
-                        &copy; {new Date().getFullYear()} Shri Gopal Krishna Seva Trust. All Rights Reserved.
+                        &copy; {new Date().getFullYear()} Shri Gopal Krishna Gaushala Seva Trust. All Rights Reserved.
                     </p>
                     <div className="flex gap-4">
                         <SocialIcon href="#">

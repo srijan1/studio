@@ -1,4 +1,4 @@
-# **App Name**: Shri Gopal Krishna Seva Trust
+# **App Name**: Shri Gopal Krishna Gaushala Seva Trust
 
 ## Core Features:
 
