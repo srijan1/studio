@@ -9,7 +9,7 @@
     {
       "id": "qr-code",
       "description": "QR code for donations",
-      "imageUrl": "https://picsum.photos/seed/qr-code/180/180",
+      "imageUrl": "/images/gushala_upi_qr.jpg",
       "imageHint": "qr code"
     },
     {
