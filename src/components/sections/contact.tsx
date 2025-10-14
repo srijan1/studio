@@ -33,14 +33,14 @@ export function Contact() {
                                 <Phone className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                                 <div>
                                     <h3 className="font-bold">Phone</h3>
-                                    <p className="text-muted-foreground">+91 9910857835</p>
+                                    <p className="text-muted-foreground">+91 9910857835 ,+91 9810177201,+91 9871070380,+91 9891992042,+91 9910133690</p>
                                 </div>
                             </div>
                             <div className="flex items-start gap-4">
                                 <Mail className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                                 <div>
                                     <h3 className="font-bold">Email</h3>
-                                    <p className="text-muted-foreground">contact@sgkg.in</p>
+                                    <p className="text-muted-foreground">gopalkrishnagaushalasewatrust@gmail.com</p>
                                 </div>
                             </div>
                         </CardContent>
