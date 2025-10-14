@@ -21,7 +21,7 @@ const activities = [
 ];
 
 export function About() {
-  const aboutImage = PlaceHolderImages.find((img) => img.id === 'about-1');
+  const aboutImage = PlaceHolderImages.find((img) => img.id === 'logo-icon');
 
   return (
     <section id="about" className="py-16 md:py-24 bg-secondary">

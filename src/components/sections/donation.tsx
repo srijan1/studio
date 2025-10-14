@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { UtensilsCrossed, ShieldCheck, Home } from 'lucide-react';
+import { UtensilsCrossed, ShieldCheck, Home, Copy } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
@@ -27,8 +27,12 @@ const donationTiers = [
 ];
 
 function DonationDialog({ amount, onClose }: { amount: string; onClose: () => void }) {
-  const upiLink = `upi://pay?pa=YOUR_UPI_ID&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
-  const whatsappLink = `https://wa.me/+91ADMINNUMBER?text=I%20paid%20%E2%82%B9${amount}%20to%20Shri%20Gopal%20Krishna%20Seva%20Trust.%20Receipt%20attached.`;
+  const upiLink = `upi://pay?pa=getepay.usfbqrap255469@utkarshbank&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
+  const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+  const message = `I paid ₹${amount} to Shri Gopal Krishna Seva Trust on ${dateTime}. Receipt attached.`;
+  const whatsappLink = `https://wa.me/+919910857835?text=${encodeURIComponent(message)}`;
+  const qrCodeImage = PlaceHolderImages.find((img) => img.id === 'qr-code');
+
 
   return (
     <Dialog open onOpenChange={onClose}>
@@ -40,10 +44,26 @@ function DonationDialog({ amount, onClose }: { amount: string; onClose: () => vo
           </DialogDescription>
         </DialogHeader>
         <div className="text-center my-4">
-          <p className="font-semibold text-lg">Click the button below to pay.</p>
-          <a href={upiLink} className="inline-block mt-4">
+          <p className="font-semibold text-lg">Scan the QR code or click the button below to pay.</p>
+            {qrCodeImage && (
+                <div className="flex flex-col items-center gap-4 rounded-lg bg-background/80 p-6 text-foreground shadow-lg backdrop-blur-sm">
+                <Image
+                    src={qrCodeImage.imageUrl}
+                    alt={qrCodeImage.description}
+                    width={180}
+                    height={180}
+                    className="rounded-md"
+                    data-ai-hint={qrCodeImage.imageHint}
+                />
+                <p className="font-bold">Scan to Donate</p>
+                </div>
+            )}
+            <a href={upiLink} className="inline-block mt-4">
             <Button size="lg">Pay ₹{amount} via UPI</Button>
           </a>
+          <p className="text-sm text-muted-foreground mt-2">
+            If the button doesn't work, please try scanning the QR code above or use the bank details below.
+          </p>
         </div>
         <DialogFooter className="flex flex-col items-center">
             <p className="text-sm text-muted-foreground mb-4">After payment, please notify us on WhatsApp for your 80G recipt.</p>
@@ -60,6 +80,7 @@ export function Donation() {
   const donationBg = PlaceHolderImages.find((img) => img.id === 'donation-bg');
   const [dialogAmount, setDialogAmount] = useState<string | null>(null);
   const [customAmount, setCustomAmount] = useState('');
+  const [copied, setCopied] = useState<string | null>(null);
 
   const handleDonationClick = (amount: string) => {
     setDialogAmount(amount);
@@ -73,6 +94,12 @@ export function Donation() {
     if (customAmount) {
       handleDonationClick(customAmount);
     }
+  };
+
+  const handleCopy = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(field);
+    setTimeout(() => setCopied(null), 2000);
   };
 
   return (
@@ -101,11 +128,11 @@ export function Donation() {
                 <div className="p-4 bg-accent rounded-full mb-4">
                     {tier.icon}
                 </div>
-                <CardTitle className="font-headline text-4xl">₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</CardTitle>
+                <CardTitle className="font-headline text-4xl">₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</CardTitle>
                 <CardDescription className="text-base">{tier.description}</CardDescription>
               </CardHeader>
               <CardFooter className="mt-auto">
-                <Button className="w-full" onClick={() => handleDonationClick(tier.amount)}>Donate ₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</Button>
+                <Button className="w-full" onClick={() => handleDonationClick(tier.amount)}>Donate ₹{tier.amount.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Button>
               </CardFooter>
             </Card>
           ))}
@@ -113,8 +140,28 @@ export function Donation() {
 
         <Card className="mt-12 max-w-lg mx-auto bg-card/80 backdrop-blur-sm">
             <CardHeader>
-                <CardTitle className="font-headline text-2xl text-center">Give a Custom Amount</CardTitle>
-                <CardDescription className="text-center">Every rupee makes a difference in the life of a cow.</CardDescription>
+                <CardTitle className="font-headline text-2xl text-center mb-4">Give a Custom Amount</CardTitle>
+                <CardDescription className="text-center text-base">
+                    <span className="font-headline text-xl">Bank Details:</span><br />
+                    Name: Shri Gopal Krishna Gaushala Sewa Trust<br />
+                    <div className="flex items-center justify-center">
+                        Ac.no. : 1359020000000928
+                        <Button variant="ghost" size="icon" onClick={() => handleCopy('1359020000000928', 'account')}>
+                            <Copy className="h-4 w-4 ml-2" />
+                        </Button>
+                        {copied === 'account' && <span className="text-xs text-primary ml-2">Copied!</span>}
+                    </div>
+                    <div className="flex items-center justify-center">
+                        IFSC Code : UTKS0001359
+                        <Button variant="ghost" size="icon" onClick={() => handleCopy('UTKS0001359', 'ifsc')}>
+                            <Copy className="h-4 w-4 ml-2" />
+                        </Button>
+                        {copied === 'ifsc' && <span className="text-xs text-primary ml-2">Copied!</span>}
+                    </div>
+                    Bank Name: Utkarsh Small Finance Bank
+                    <br /><br />
+                    Every rupee makes a difference in the life of a cow.
+                </CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="flex items-center space-x-2">
