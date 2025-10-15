@@ -139,6 +139,12 @@ export function Donation() {
             <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
                 Your generosity provides a lifeline to our beloved cows. Choose a way to give and become a part of their story of hope and healing.
             </p>
+            <blockquote className="mt-6 max-w-3xl mx-auto border-l-4 border-primary pl-4 text-left">
+                <p className="text-lg font-semibold italic text-foreground">
+                    "The bull is the emblem of religion and the cow is the emblem of the earth. When the bull and the cow are in a joyful mood, it is to be understood that the people of the world are also in a joyful mood."
+                </p>
+                <footer className="mt-2 text-sm text-muted-foreground">- Srila Prabhupada, Srimad Bhagavatam 1.16.18, Purport</footer>
+            </blockquote>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {donationTiers.map((tier) => (

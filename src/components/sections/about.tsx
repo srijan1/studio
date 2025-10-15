@@ -1,22 +1,22 @@
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Heart, Home, Stethoscope } from 'lucide-react';
+import { Heart, Home, Stethoscope, BookHeart } from 'lucide-react';
 import Image from 'next/image';
 
 const activities = [
   {
     icon: <Heart className="h-10 w-10 text-primary" />,
     title: 'Loving Shelter',
-    description: 'We provide a safe, clean, and loving home for homeless, abandoned, and sick cows.',
+    description: 'A safe, clean, and loving home for homeless, abandoned, and ailing cows, where they are treated as family.',
   },
   {
     icon: <Stethoscope className="h-10 w-10 text-primary" />,
     title: 'Medical Care',
-    description: 'Our on-site veterinary team offers regular check-ups and emergency medical treatment.',
+    description: 'Our dedicated veterinary team provides regular check-ups, emergency treatment, and compassionate care to restore health.',
   },
   {
     icon: <Home className="h-10 w-10 text-primary" />,
     title: 'Peaceful Retirement',
-    description: 'Elderly and non-milking cows live out their natural lives in peace and dignity.',
+    description: 'Elderly and non-milking cows live out their natural lives in a serene environment, honored for their years of service.',
   },
 ];
 
@@ -28,16 +28,16 @@ export function About() {
       <div className="container">
         <div className="text-center mb-12">
             <h2 className="font-headline text-4xl md:text-5xl">Our Sacred Duty</h2>
-            <p className="mt-4 max-w-3xl mx-auto text-lg text-muted-foreground">
-                At Shri Gopal Krishna Gaushala Seva Trust, we are dedicated to the principle of 'Gau Seva' – serving the cow, who is revered as a mother in our culture. We believe every cow deserves to live a life free from suffering and filled with care.
+            <p className="mt-4 max-w-4xl mx-auto text-lg text-muted-foreground">
+                In Vedic culture, the cow is revered as 'Gau Mata'—the universal mother. Serving her is the highest form of service. At Shri Gopal Krishna Gaushala, we are dedicated to this sacred principle of 'Gau Seva,' ensuring every cow receives the love, dignity, and care she deserves.
             </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-                <h3 className="font-headline text-3xl mb-4">A Sanctuary of Compassion</h3>
+                <h3 className="font-headline text-3xl mb-4">A Sanctuary of Lifelong Compassion</h3>
                 <p className="text-muted-foreground mb-6 text-lg">
-                Shri Gopal Krishna Gaushala Seva Trust is more than just a shelter; it's a home. We rescue cows from neglect and abandonment, providing them with nutritious food, clean water, medical attention, and a peaceful environment where they can thrive. Our commitment extends for their entire lifetime, ensuring they are always treated with the dignity and love they deserve.
+                Our Gaushala is more than a shelter; it is a sanctuary where mother cows, bulls, and calves are protected from neglect and slaughter. We rescue them from suffering and provide nutritious food, clean water, and a peaceful environment to live out their lives in tranquility. Our commitment is lifelong, ensuring they are always treated with the reverence and love befitting a mother.
                 </p>
                 <div className="grid grid-cols-1 gap-6 mt-8">
                 {activities.map((activity) => (
