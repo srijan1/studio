@@ -28,18 +28,29 @@ const donationTiers = [
 
 async function logDonation(amount: string) {
   try {
-    await fetch('/api/log-donation', {
+    const response = await fetch('/api/log-donation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
         amount,
         date: new Date().toISOString(),
       }),
     });
+
+    const result = await response.json();
+    console.log('Donation log response from backend:', result);
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Failed to log donation.');
+    }
+    
+    return result;
+
   } catch (error) {
     console.error('Failed to log donation:', error);
+    throw error;
   }
 }
 
@@ -50,9 +61,15 @@ function DonationDialog({ amount, onClose }: { amount: string; onClose: () => vo
   const whatsappLink = `https://wa.me/+919910857835?text=${encodeURIComponent(message)}`;
   const qrCodeImage = PlaceHolderImages.find((img) => img.id === 'qr-code');
 
-  const handlePayment = () => {
-    logDonation(amount);
-    window.location.href = upiLink;
+  const handlePayment = async () => {
+    try {
+      await logDonation(amount);
+      console.log('Donation logged successfully, proceeding to UPI payment.');
+      window.location.href = upiLink;
+    } catch (error) {
+      console.error("Payment initiation failed because logging failed:", error);
+      // Optionally, show an error message to the user here
+    }
   };
 
   return (

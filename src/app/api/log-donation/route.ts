@@ -1,33 +1,29 @@
 import { firestore } from '@/lib/firebase-admin';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
+  console.log('Received donation log request');
   try {
-    const body = await request.json();
-    const { amount, date } = body;
+    const { amount, date } = await req.json();
+    console.log('Request body:', { amount, date });
 
     if (!amount || !date) {
-      return NextResponse.json({ error: 'Amount and date are required' }, { status: 400 });
+      console.error('Validation failed: Amount and date are required.');
+      return NextResponse.json({ error: 'Amount and date are required.' }, { status: 400 });
     }
 
-    if (!firestore) {
-        throw new Error('Firestore is not initialized.');
-    }
+    const donationData = {
+      amount: parseFloat(amount),
+      date: new Date(date),
+      status: 'initiated',
+    };
 
-    // Add a new document with a generated ID to the "donations" collection
-    const docRef = await firestore.collection('donations').add({
-      amount: Number(amount), // Store amount as a number
-      date: new Date(date),   // Store date as a Firestore Timestamp
-      status: 'initiated',    // You can track payment status here
-    });
+    const docRef = await firestore.collection('donations').add(donationData);
 
-    console.log('Donation logged with ID: ', docRef.id);
-
-    return NextResponse.json({ success: true, id: docRef.id }, { status: 200 });
-
-  } catch (error) {
-    console.error('Error logging donation:', error);
-    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-    return NextResponse.json({ error: 'Failed to log donation', details: errorMessage }, { status: 500 });
+    console.log('Donation logged to Firestore with ID: ', docRef.id);
+    return NextResponse.json({ id: docRef.id, ...donationData }, { status: 200 });
+  } catch (error: any) {
+    console.error('Error logging donation to Firestore:', error);
+    return NextResponse.json({ error: 'Failed to log donation.', details: error.message }, { status: 500 });
   }
 }
