@@ -7,6 +7,7 @@ import { UtensilsCrossed, ShieldCheck, Home, Copy } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import { useToast } from '@/hooks/use-toast';
 
 const donationTiers = [
   {
@@ -27,31 +28,23 @@ const donationTiers = [
 ];
 
 async function logDonation(amount: string) {
-  try {
-    const response = await fetch('/api/log-donation', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        amount,
-        date: new Date().toISOString(),
-      }),
-    });
+  const response = await fetch('/api/log-donation', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      amount,
+      date: new Date().toISOString(),
+    }),
+  });
 
-    const result = await response.json();
-    console.log('Donation log response from backend:', result);
-
-    if (!response.ok) {
-      throw new Error(result.error || 'Failed to log donation.');
-    }
-    
-    return result;
-
-  } catch (error) {
-    console.error('Failed to log donation:', error);
-    throw error;
+  if (!response.ok) {
+    const errorResult = await response.json();
+    throw new Error(errorResult.error || 'Failed to log donation.');
   }
+
+  return response.json();
 }
 
 function DonationDialog({ amount, onClose }: { amount: string; onClose: () => void }) {
@@ -60,15 +53,19 @@ function DonationDialog({ amount, onClose }: { amount: string; onClose: () => vo
   const message = `I paid ₹${amount} to Shri Gopal Krishna Gaushala Seva Trust on ${dateTime}. Receipt attached.`;
   const whatsappLink = `https://wa.me/+919910857835?text=${encodeURIComponent(message)}`;
   const qrCodeImage = PlaceHolderImages.find((img) => img.id === 'qr-code');
+  const { toast } = useToast();
 
   const handlePayment = async () => {
     try {
       await logDonation(amount);
-      console.log('Donation logged successfully, proceeding to UPI payment.');
       window.location.href = upiLink;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Payment initiation failed because logging failed:", error);
-      // Optionally, show an error message to the user here
+      toast({
+        variant: "destructive",
+        title: "Donation Logging Failed",
+        description: error.message || "Could not save donation record to the database.",
+      });
     }
   };
 

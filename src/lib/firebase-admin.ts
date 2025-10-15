@@ -2,38 +2,32 @@ import admin from 'firebase-admin';
 
 // Ensure the private key is properly formatted.
 const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+const projectId = process.env.FIREBASE_PROJECT_ID;
+const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
 
 if (!admin.apps.length) {
-  try {
-    if (process.env.FIREBASE_PROJECT_ID && process.env.FIREBASE_CLIENT_EMAIL && privateKey) {
+  if (projectId && clientEmail && privateKey) {
+    try {
       admin.initializeApp({
         credential: admin.credential.cert({
-          projectId: process.env.FIREBASE_PROJECT_ID,
-          clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+          projectId: projectId,
+          clientEmail: clientEmail,
           privateKey: privateKey,
         }),
       });
-    } else {
-      console.warn('Firebase admin environment variables are not fully set. Initialization skipped.');
+      console.log('Firebase Admin initialized successfully.');
+    } catch (error: any) {
+      console.error('Firebase Admin initialization error:', error.message);
+      // Throw an error to prevent the app from using a mocked firestore instance
+      throw new Error('Firebase Admin SDK failed to initialize.');
     }
-  } catch (error) {
-    console.error('Firebase admin initialization error', error);
+  } else {
+    // This will now be a hard failure during development if keys are missing
+    throw new Error('Missing Firebase Admin SDK credentials. Please check your environment variables.');
   }
 }
 
-let firestore;
-if (admin.apps.length) {
-  firestore = admin.firestore();
-} else {
-  // Provide a no-op mock if initialization fails
-  // This allows the app to build and run even if firebase-admin is not configured
-  firestore = {
-    collection: () => ({
-      add: () => Promise.resolve({ id: 'mock-id' }),
-    }),
-  } as unknown as admin.firestore.Firestore;
-  console.error("Firestore is not initialized. Using a mock implementation.");
-}
-
+// This will now only be reached if initializeApp() was successful.
+const firestore = admin.firestore();
 
 export { firestore };
