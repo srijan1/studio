@@ -38,36 +38,36 @@
     {
       "id": "gallery-4",
       "description": "A playful calf running in a green pasture.",
-      "imageUrl": "https://picsum.photos/seed/gallery-4/600/400",
+      "imageUrl": "/images/gallery_4.jpeg",
       "imageHint": "calf",
       "type": "image"
     },
     {
       "id": "gallery-5",
       "description": "A herd of cows grazing peacefully in a field.",
-      "imageUrl": "https://picsum.photos/seed/gallery-5/600/400",
+      "imageUrl": "/images/gallery_5.jpeg",
       "imageHint": "cows grazing",
       "type": "image"
     },
     {
       "id": "gallery-video-1",
       "description": "A short video of life at the gaushala.",
-      "imageUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "imageUrl": "/images/video_1.mp4",
+      "videoUrl": "/images/video_1.mp4",
       "imageHint": "gaushala video",
       "type": "video"
     },
     {
       "id": "map",
       "description": "A map showing the location of Shri Gopal Krishna Gaushala Seva Trust.",
-      "imageUrl": "https://picsum.photos/seed/map/600/400",
+      "imageUrl": "/images/map.png",
       "imageHint": "map location",
       "type": "image"
     },
     {
       "id": "donation-bg",
       "description": "A cow looking at the camera with gentle, grateful eyes.",
-      "imageUrl": "https://picsum.photos/seed/donation-bg/800/600",
+      "imageUrl": "/images/gallery_6.jpeg",
       "imageHint": "grateful cow",
       "type": "image"
     },

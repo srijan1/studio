@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function Contact() {
     const mapImage = PlaceHolderImages.find((img) => img.id === 'map');
@@ -45,18 +46,20 @@ export function Contact() {
                             </div>
                         </CardContent>
                     </Card>
-                    <div className="rounded-lg overflow-hidden shadow-xl">
-                        {mapImage && (
-                            <Image
-                                src={mapImage.imageUrl}
-                                alt={mapImage.description}
-                                width={600}
-                                height={400}
-                                className="w-full h-auto object-cover"
-                                data-ai-hint={mapImage.imageHint}
-                            />
-                        )}
-                    </div>
+                    <Link href="https://www.google.com/maps?q=28.59297,76.969561&z=17&hl=en" target="_blank" rel="noopener noreferrer">
+                        <div className="rounded-lg overflow-hidden shadow-xl cursor-pointer">
+                            {mapImage && (
+                                <Image
+                                    src={mapImage.imageUrl}
+                                    alt={mapImage.description}
+                                    width={600}
+                                    height={400}
+                                    className="w-full h-auto object-cover"
+                                    data-ai-hint={mapImage.imageHint}
+                                />
+                            )}
+                        </div>
+                    </Link>
                 </div>
             </div>
         </section>
