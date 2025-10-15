@@ -44,7 +44,7 @@ async function logDonation(amount: string) {
 }
 
 function DonationDialog({ amount, onClose }: { amount: string; onClose: () => void }) {
-  const upiLink = `upi://pay?pa=getepay.usfbqrap255469&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
+  const upiLink = `upi://pay?pa=getepay.usfbqrap255469@utkarshbank&pn=Shri%20Gopal%20Krishna%20Seva%20Trust&am=${amount}&cu=INR`;
   const dateTime = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
   const message = `I paid ₹${amount} to Shri Gopal Krishna Gaushala Seva Trust on ${dateTime}. Receipt attached.`;
   const whatsappLink = `https://wa.me/+919910857835?text=${encodeURIComponent(message)}`;
