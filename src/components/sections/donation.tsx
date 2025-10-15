@@ -33,7 +33,7 @@ async function logDonation(amount: string) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         amount,
         date: new Date().toISOString(),
       }),
