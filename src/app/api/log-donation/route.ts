@@ -10,6 +10,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Amount and date are required' }, { status: 400 });
     }
 
+    if (!firestore) {
+        throw new Error('Firestore is not initialized.');
+    }
+
     // Add a new document with a generated ID to the "donations" collection
     const docRef = await firestore.collection('donations').add({
       amount: Number(amount), // Store amount as a number
