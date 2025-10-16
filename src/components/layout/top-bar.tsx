@@ -54,33 +54,4 @@ const DropdownItem = ({
 );
 
 export function TopBar() {
-  return (
-    <div className="bg-primary text-primary-foreground p-2">
-      <div className="container mx-auto flex items-center justify-between">
-        <p className="text-sm font-medium">
-          This is a demo application. Not for production use.
-        </p>
-        <Dropdown title="Quick Links">
-          <DropdownItem
-            icon={<FileText className="h-5 w-5" />}
-            title="Documentation"
-            description="Read the project documentation."
-            href="#"
-          />
-          <DropdownItem
-            icon={<CheckCircle className="h-5 w-5" />}
-            title="Status Page"
-            description="Check the status of our services."
-            href="#"
-          />
-          <DropdownItem
-            icon={<ArrowRightCircle className="h-5 w-5" />}
-            title="Log in"
-            description="Access your account."
-            href="#"
-          />
-        </Dropdown>
-      </div>
-    </div>
-  );
 }
